@@ -1,0 +1,149 @@
+<?php
+
+/**
+ * This is the model class for table "device_info".
+ *
+ * The followings are the available columns in table 'device_info':
+ * @property integer $id
+ * @property string $SN
+ * @property string $number
+ * @property string $manufacturer
+ * @property string $country_of_origin
+ * @property string $provider
+ * @property string $speed
+ * @property string $type
+ * @property string $status
+ * @property string $safety_pole
+ * @property string $warrenty
+ * @property string $insurance
+ * @property string $comment
+ * @property integer $street
+ * @property string $longLocation
+ * @property string $latLocation
+ *
+ * The followings are the available model relations:
+ * @property Streets $street0
+ */
+class DeviceInfo extends CActiveRecord
+{
+	/**
+	 * Returns the static model of the specified AR class.
+	 * @param string $className active record class name.
+	 * @return DeviceInfo the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+
+	/**
+	 * @return string the associated database table name
+	 */
+	public function tableName()
+	{
+		return 'device_info';
+	}
+
+	/**
+	 * @return array validation rules for model attributes.
+	 */
+	public function rules()
+	{
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+			array('SN, number, speed, type, safety_pole, warrenty, insurance, street', 'required'),
+			array('street', 'numerical', 'integerOnly'=>true),
+			array('SN', 'length', 'max'=>100),
+			array('number, type', 'length', 'max'=>10),
+			array('manufacturer, status', 'length', 'max'=>20),
+			array('country_of_origin, safety_pole', 'length', 'max'=>15),
+			array('provider, comment', 'length', 'max'=>45),
+			array('speed', 'length', 'max'=>5),
+			array('warrenty, insurance', 'length', 'max'=>1),
+			array('longLocation, latLocation', 'length', 'max'=>18),
+			// The following rule is used by search().
+			// Please remove those attributes that should not be searched.
+			array('id, SN, number, manufacturer, country_of_origin, provider, speed, type, status, safety_pole, warrenty, insurance, comment, street, longLocation, latLocation', 'safe', 'on'=>'search'),
+		);
+	}
+
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
+		return array(
+			'street0' => array(self::BELONGS_TO, 'Streets', 'street'),
+		);
+	}
+
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'id' => 'ID',
+			'SN' => 'Sn',
+			'number' => 'Number',
+			'manufacturer' => 'Manufacturer',
+			'country_of_origin' => 'Country Of Origin',
+			'provider' => 'Provider',
+			'speed' => 'Speed',
+			'type' => 'Type',
+			'status' => 'Status',
+			'safety_pole' => 'Safety Pole',
+			'warrenty' => 'Warrenty',
+			'insurance' => 'Insurance',
+			'comment' => 'Comment',
+			'street' => 'Street',
+			'longLocation' => 'Long Location',
+			'latLocation' => 'Lat Location',
+		);
+	}
+
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 */
+	public function search()
+	{
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id);
+		$criteria->compare('SN',$this->SN,true);
+		$criteria->compare('number',$this->number,true);
+		$criteria->compare('manufacturer',$this->manufacturer,true);
+		$criteria->compare('country_of_origin',$this->country_of_origin,true);
+		$criteria->compare('provider',$this->provider,true);
+		$criteria->compare('speed',$this->speed,true);
+		$criteria->compare('type',$this->type,true);
+		$criteria->compare('status',$this->status,true);
+		$criteria->compare('safety_pole',$this->safety_pole,true);
+		$criteria->compare('warrenty',$this->warrenty,true);
+		$criteria->compare('insurance',$this->insurance,true);
+		$criteria->compare('comment',$this->comment,true);
+		$criteria->compare('street',$this->street);
+		$criteria->compare('longLocation',$this->longLocation,true);
+		$criteria->compare('latLocation',$this->latLocation,true);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+	
+	/* the following function added by motaman, for being used on dropDownList() */
+	
+	public function getSN()
+	{
+		$creter=new CDbCriteria;
+		 $creter->compare('SN', $this->findAll("SN"));
+		 return new CActiveDataProvider($this, array('criteria'=>$creter));
+	}
+}

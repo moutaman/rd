@@ -1,0 +1,117 @@
+<?php
+/* @var $this DeviceInfoController */
+/* @var $model DeviceInfo */
+/* @var $form CActiveForm */
+?>
+
+<div class="form">
+
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'device-info-form',
+	'enableAjaxValidation'=>false,
+)); ?>
+
+	<p class="note">Fields with <span class="required">*</span> are required.</p>
+
+	<?php echo $form->errorSummary($model); ?>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'SN'); ?>
+		<? /*
+		<?php echo $form->textField($model,'SN',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->error($model,'SN'); ?>
+		*/ ?>
+		<?php echo $form->dropDownList($model, 'SN', $model()->getSN, array('prompt'=>'Select Device')); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'number'); ?>
+		<?php echo $form->textField($model,'number',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->error($model,'number'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'manufacturer'); ?>
+		<?php echo $form->textField($model,'manufacturer',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->error($model,'manufacturer'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'country_of_origin'); ?>
+		<?php echo $form->textField($model,'country_of_origin',array('size'=>15,'maxlength'=>15)); ?>
+		<?php echo $form->error($model,'country_of_origin'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'provider'); ?>
+		<?php echo $form->textField($model,'provider',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'provider'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'speed'); ?>
+		<?php echo $form->textField($model,'speed',array('size'=>5,'maxlength'=>5)); ?>
+		<?php echo $form->error($model,'speed'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'type'); ?>
+		<?php echo $form->textField($model,'type',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->error($model,'type'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'status'); ?>
+		<?php echo $form->textField($model,'status',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->error($model,'status'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'safety_pole'); ?>
+		<?php echo $form->textField($model,'safety_pole',array('size'=>15,'maxlength'=>15)); ?>
+		<?php echo $form->error($model,'safety_pole'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'warrenty'); ?>
+		<?php echo $form->textField($model,'warrenty',array('size'=>1,'maxlength'=>1)); ?>
+		<?php echo $form->error($model,'warrenty'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'insurance'); ?>
+		<?php echo $form->textField($model,'insurance',array('size'=>1,'maxlength'=>1)); ?>
+		<?php echo $form->error($model,'insurance'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'comment'); ?>
+		<?php echo $form->textField($model,'comment',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'comment'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'street'); ?>
+		<?php echo $form->textField($model,'street'); ?>
+		<?php echo $form->error($model,'street'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'longLocation'); ?>
+		<?php echo $form->textField($model,'longLocation',array('size'=>18,'maxlength'=>18)); ?>
+		<?php echo $form->error($model,'longLocation'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'latLocation'); ?>
+		<?php echo $form->textField($model,'latLocation',array('size'=>18,'maxlength'=>18)); ?>
+		<?php echo $form->error($model,'latLocation'); ?>
+	</div>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	</div>
+
+<?php $this->endWidget(); ?>
+
+</div><!-- form -->
